@@ -300,7 +300,7 @@ function App() {
                 Contact Me
               </motion.button>
               <motion.a
-                href="/CV_ASSK.pdf"
+                href="/CV_Shankar_Sai_Krishna_Allumolu.pdf"
                 download
                 className="btn btn-outline"
                 whileHover={{ scale: 1.05 }}
@@ -957,6 +957,57 @@ function App() {
                 I'm currently open to new opportunities, internships, and collaborations. 
                 Whether you have a question or just want to say hi, feel free to reach out!
               </p>
+
+              {/* Contact Form */}
+              <motion.form 
+                className="contact-form"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                action="https://formsubmit.co/allumolushankarsaikrishna@gmail.com"
+                method="POST"
+              >
+                <h3>Send Me a Message</h3>
+                <div className="form-group">
+                  <input 
+                    type="text" 
+                    name="name" 
+                    placeholder="Your Name" 
+                    required 
+                    className="form-input"
+                  />
+                </div>
+                <div className="form-group">
+                  <input 
+                    type="email" 
+                    name="email" 
+                    placeholder="Your Email" 
+                    required 
+                    className="form-input"
+                  />
+                </div>
+                <div className="form-group">
+                  <textarea 
+                    name="message" 
+                    placeholder="Your Message" 
+                    rows="4" 
+                    required 
+                    className="form-input form-textarea"
+                  ></textarea>
+                </div>
+                <input type="hidden" name="_subject" value="New message from Portfolio!" />
+                <input type="hidden" name="_captcha" value="false" />
+                <motion.button 
+                  type="submit"
+                  className="btn btn-primary btn-full"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <Mail size={18} />
+                  Send Message
+                </motion.button>
+              </motion.form>
               
               <div className="contact-methods">
                 <motion.a 
