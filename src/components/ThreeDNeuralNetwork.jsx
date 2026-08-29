@@ -263,7 +263,7 @@ export default function ThreeDNeuralNetwork() {
         pointerEvents: 'none',
         zIndex: -1,
         opacity: 0.25, // push the network lines into the background for readability
-        background: '#030712' // Dark slate grey base for contrast
+        background: 'transparent' // Transparent background to let the theme background color shine through
       }}
     />
   );

@@ -4,8 +4,8 @@ import { Terminal, Send, Cpu, Play, Trash2 } from 'lucide-react';
 export default function AIAssistantTerminal() {
   const [messages, setMessages] = useState([
     { role: 'system', text: 'Initializing Neural Network Interface...' },
-    { role: 'system', text: 'Model Loaded: AshishBot-v1.0.0 (B.Tech CSE | CGPA: 9.24)' },
-    { role: 'assistant', text: 'Hello! I am Ashish\'s AI Agent. Ashish is a Computer Science & Engineering student at LPU specializing in AI development, full-stack software development, and IoT solutions. How can I help you explore his work today?' }
+    { role: 'system', text: 'Profile Loaded: Ashish\nB.Tech CSE | LPU | 3rd Semester\nCGPA: 9.24\nCurrent Focus: AI/ML\nSkills: Python • C++ • DSA • SQL\nProjects: Full-Stack Web • IoT' },
+    { role: 'assistant', text: 'Hello! I am Ashish\'s AI Agent. Ashish is a 3rd-semester B.Tech CSE student at LPU with a strong interest in AI/ML, hands-on software development, and IoT. How can I help you explore his work today?' }
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -42,23 +42,25 @@ export default function AIAssistantTerminal() {
     const cleanInput = input.toLowerCase().trim();
 
     if (cleanInput.includes('project') || cleanInput.includes('work') || cleanInput.includes('/projects')) {
-      return `Ashish has built notable engineering solutions:
-1. **Fleet Management System (TruckBoss Pro)**: A full-stack commercial web system for Bihal Suppliers. Built using Node.js, Express, MySQL, Socket.IO, and Cloudinary. It automates trips, driver management, fuel tracking, and prints PDF/Excel reports.
-2. **Smart Home Automation**: An IoT project built around ESP32 and Arduino, integrating relays, GPIO pins, and Wi-Fi to remotely toggle AC appliances via an IoT cloud dashboard.`;
+      return `Ashish has built notable hands-on projects:
+1. **TruckBoss-Pro — Fleet Management System**: A real-world project for Bihal Suppliers built using Node.js, Express.js, MySQL, JavaScript, Socket.IO, Cloudinary, and JWT. It automates trips, driver management, fuel tracking, and prints PDF/Excel reports.
+2. **IoT Smart Home Controller**: Built an ESP32-based smart home automation system to remotely control LEDs and an AC lamp through Arduino IoT Cloud using Wi-Fi, GPIO, and relay modules.
+3. **Responsive Blog Website**: Crafted a responsive blog website using semantic HTML5 and modern CSS, with adaptive layouts for desktop and mobile screens.`;
     }
 
     if (cleanInput.includes('cgpa') || cleanInput.includes('education') || cleanInput.includes('academics') || cleanInput.includes('college') || cleanInput.includes('university') || cleanInput.includes('lpu') || cleanInput.includes('/academics')) {
-      return `Ashish is currently pursuing a **Bachelor of Technology in Computer Science & Engineering** at Lovely Professional University (LPU), Punjab.
-- **Academic Standard**: Currently maintaining an exceptional CGPA of **9.24**.
+      return `Ashish is a 3rd-semester B.Tech CSE student at Lovely Professional University (LPU), Punjab.
+- **Academic Standard**: Currently maintaining a CGPA of **9.24**.
 - **Schooling**: Completed Class 12 (84.6%) and Class 10 (88%) from DAV Multipurpose Public School, Haryana.`;
     }
 
     if (cleanInput.includes('skill') || cleanInput.includes('tech') || cleanInput.includes('programming') || cleanInput.includes('language') || cleanInput.includes('/skills')) {
-      return `Ashish's technical capabilities include:
-- **Languages**: Python, SQL, C, C++
-- **Data & AI/ML Tools**: Pandas, NumPy, Matplotlib, PostgreSQL
-- **Hardware & IoT**: ESP32, Arduino IDE, GPIO control
-- **Dev Tools**: Git & GitHub, Google Cloud Platform, VS Code, Jupyter Notebook`;
+      return `Ashish's technical skills include:
+- **Programming**: Python, C++, C, SQL
+- **Core CS**: Data Structures & Algorithms, OOP, DBMS, Problem Solving
+- **AI/ML**: NumPy, Pandas, Machine Learning Fundamentals, Python for AI/ML, Google Colab
+- **Web Development**: HTML, CSS, JavaScript, Node.js, Express.js, REST APIs
+- **Tools**: Git, GitHub, VS Code, MySQL, Arduino IDE, Cloudinary`;
     }
 
     if (cleanInput.includes('contact') || cleanInput.includes('email') || cleanInput.includes('phone') || cleanInput.includes('linkedin') || cleanInput.includes('/contact')) {
@@ -74,7 +76,7 @@ export default function AIAssistantTerminal() {
     }
 
     // Default response
-    return `Query processed. Ashish is an aspiring Software Developer and AI enthusiast specializing in building data-driven, intelligent applications. He combines solid DSA core knowledge with hands-on web development (Node.js/MySQL) and IoT (ESP32). Contact him at ashishkumarjha9896@gmail.com to collaborate!`;
+    return `Query processed. Ashish is a 3rd-semester B.Tech CSE student at LPU and an AI/ML enthusiast exploring software development, AI/ML, and intelligent applications. He combines a solid DSA foundation with hands-on web development (Node.js/MySQL) and IoT (ESP32). Contact him at ashishkumarjha9896@gmail.com to collaborate!`;
   };
 
   // Simulate streaming response
@@ -180,13 +182,19 @@ export default function AIAssistantTerminal() {
           <span className="dot green" onClick={handleClear} title="Clear terminal" style={{ cursor: 'pointer' }}></span>
         </div>
         <div className="terminal-title">
-          <Terminal size={14} className="icon-terminal" />
+          <Terminal size={14} className="icon-terminal" style={{ color: 'var(--accent-primary)' }} />
           <span>ashish-ai-agent:~ core-neural-net</span>
         </div>
         <div className="terminal-status" onClick={handleClear} style={{ cursor: 'pointer' }} title="Reset interface">
+          <div className="terminal-waveform">
+            <span className="wave-bar bar-1"></span>
+            <span className="wave-bar bar-2"></span>
+            <span className="wave-bar bar-3"></span>
+            <span className="wave-bar bar-4"></span>
+          </div>
           <Trash2 size={12} style={{ marginRight: '4px', opacity: 0.8 }} />
           <span className="status-blink"></span>
-          <span className="status-text">ONLINE</span>
+          <span className="status-text">ACTIVE</span>
         </div>
       </div>
 
@@ -194,29 +202,39 @@ export default function AIAssistantTerminal() {
       <div className="terminal-body" ref={terminalBodyRef}>
         <div className="terminal-scroll-area">
           {messages.map((msg, i) => (
-            <div key={i} className={`terminal-line ${msg.role}`} style={{ display: 'flex', gap: '6px', alignItems: 'flex-start', marginBottom: '8px' }}>
-              {msg.role === 'user' && (
-                <span className="prompt-symbol" style={{ whiteSpace: 'nowrap', color: 'var(--accent-secondary)' }}>visitor@ashish-portfolio:~$ </span>
-              )}
-              {msg.role === 'assistant' && (
-                <span className="prompt-symbol assistant-symbol" style={{ whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                  <Cpu size={12} /> AI-Agent:
+            <div key={i} className={`terminal-bubble ${msg.role}`}>
+              <div className="bubble-header">
+                {msg.role === 'user' && (
+                  <span className="bubble-tag tag-user">visitor@client:~$</span>
+                )}
+                {msg.role === 'assistant' && (
+                  <span className="bubble-tag tag-ai">
+                    <Cpu size={10} style={{ marginRight: '4px', color: 'var(--accent-primary)' }} />
+                    neural_core
+                  </span>
+                )}
+                {msg.role === 'system' && (
+                  <span className="bubble-tag tag-sys">[system_event]</span>
+                )}
+                <span className="bubble-time">
+                  {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false })}
                 </span>
-              )}
-              {msg.role === 'system' && (
-                <span className="prompt-symbol system-symbol" style={{ whiteSpace: 'nowrap' }}>[SYS]: </span>
-              )}
-              <div className="message-content" style={{ flex: 1 }}>
+              </div>
+              <div className="bubble-body">
                 {renderFormattedText(msg.text)}
               </div>
             </div>
           ))}
           {isTyping && (
-            <div className="terminal-line assistant typing" style={{ display: 'flex', gap: '6px', alignItems: 'flex-start', marginBottom: '8px' }}>
-              <span className="prompt-symbol assistant-symbol" style={{ whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                <Cpu size={12} /> AI-Agent:
-              </span>
-              <div className="message-content" style={{ flex: 1 }}>
+            <div className="terminal-bubble assistant typing">
+              <div className="bubble-header">
+                <span className="bubble-tag tag-ai">
+                  <Cpu size={10} style={{ marginRight: '4px', color: 'var(--accent-primary)' }} />
+                  neural_core
+                </span>
+                <span className="bubble-time">processing...</span>
+              </div>
+              <div className="bubble-body">
                 {renderFormattedText(streamingText)}
                 <span className="cursor-blink">|</span>
               </div>
@@ -227,7 +245,7 @@ export default function AIAssistantTerminal() {
 
       {/* Quick Interactive Actions */}
       <div className="terminal-quick-actions">
-        <span className="quick-label">Quick Prompts:</span>
+        <span className="quick-label">Execute Command:</span>
         <div className="quick-buttons">
           {quickCommands.map((qc) => (
             <button
@@ -236,7 +254,7 @@ export default function AIAssistantTerminal() {
               disabled={isTyping}
               className="quick-btn"
             >
-              <Play size={10} className="play-icon" />
+              <Play size={8} className="play-icon" />
               {qc.label}
             </button>
           ))}
@@ -245,12 +263,12 @@ export default function AIAssistantTerminal() {
 
       {/* Input Field Form */}
       <form onSubmit={handleSubmit} className="terminal-input-form">
-        <span className="input-prompt">visitor@lpu-student:~$</span>
+        <span className="input-prompt">CORE_NET &gt;</span>
         <input
           type="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          placeholder="Ask about CGPA, projects, contact..."
+          placeholder="Query Ashish's credentials, projects, stack..."
           disabled={isTyping}
           className="terminal-input-field"
         />
